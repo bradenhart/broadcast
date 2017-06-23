@@ -1,4 +1,4 @@
-package io.bradenhart.broadcast.database;
+package io.bradenhart.broadcast.data.db;
 
 import android.provider.BaseColumns;
 
@@ -8,9 +8,9 @@ import android.provider.BaseColumns;
  *
  * @author bradenhart
  */
-public class DBContract {
+public class AppDbContract {
 
-    private DBContract() {}
+    private AppDbContract() {}
 
     /**
      * Defines Message table name and columns.
@@ -27,7 +27,7 @@ public class DBContract {
      * Group table stores groups for contacts to be associated with.
      */
     public static class Group implements BaseColumns {
-        public static final String TABLE_NAME = "Group";
+        public static final String TABLE_NAME = "Group_";
         public static final String COLUMN_GROUP_NAME = "name";
     }
 

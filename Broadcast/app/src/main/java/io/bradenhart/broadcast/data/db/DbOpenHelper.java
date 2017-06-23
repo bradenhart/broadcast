@@ -1,22 +1,22 @@
-package io.bradenhart.broadcast.database;
+package io.bradenhart.broadcast.data.db;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import io.bradenhart.broadcast.database.DBContract.*;
+import io.bradenhart.broadcast.data.db.AppDbContract.*;
 
 /**
  * Helper class for the Broadcast SQLite Database.
  *
  * @author bradenhart
  */
-class DBHelper extends SQLiteOpenHelper {
+public class DbOpenHelper extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "broadcast_db.db";
     private static final int DB_VERSION = 1;
 
-    private static DBHelper dbHelper;
+    private static DbOpenHelper dbHelper;
 
     private final String SQL_CREATE_MESSAGE = "create table " + Message.TABLE_NAME + "("
             + Message._ID + " integer primary key autoincrement, "
@@ -36,20 +36,20 @@ class DBHelper extends SQLiteOpenHelper {
             + Contact.COLUMN_CONTACT_GROUP_ID + " integer not null"
 
             + "foreign key(" + Contact.COLUMN_CONTACT_GROUP_ID + ")"
-            + " references " + Group.TABLE_NAME + "(" + Group._ID + ")"
+            + " references " + Group.TABLE_NAME + "(" + AppDbContract.Group._ID + ")"
             + ");";
 
     private final String SQL_DELETE_MESSAGE = "drop table if exists " + Message.TABLE_NAME;
     private final String SQL_DELETE_GROUP   = "drop table if exists " + Group.TABLE_NAME;
     private final String SQL_DELETE_CONTACT = "drop table if exists " + Contact.TABLE_NAME;
 
-    private DBHelper(Context context) {
+    private DbOpenHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }
 
-    static synchronized DBHelper getInstance(Context context) {
+    static synchronized DbOpenHelper getInstance(Context context) {
         if (dbHelper == null) {
-            dbHelper = new DBHelper(context);
+            dbHelper = new DbOpenHelper(context);
         }
         return dbHelper;
     }
@@ -69,4 +69,5 @@ class DBHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_DELETE_CONTACT);
         onCreate(db);
     }
+
 }
