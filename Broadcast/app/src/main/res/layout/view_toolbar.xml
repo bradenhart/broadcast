@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tb_base"
+    android:layout_width="match_parent"
+    android:layout_height="?android:attr/actionBarSize"
+    android:background="@color/primary">
+
+    <TextView
+        android:id="@+id/tv_base_title"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:textSize="@dimen/textsize_toolbar_title"
+        android:textStyle="bold"
+        android:textColor="@color/text"/>
+
+</android.support.v7.widget.Toolbar>
