@@ -15,7 +15,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.zip.Inflater;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,15 +22,15 @@ import butterknife.ButterKnife;
 public class MainActivity extends AppCompatActivity {
 
     private final String LOGTAG = MainActivity.class.getSimpleName();
-    private Context mContext;
+    private Context context;
 
 
     @BindView(R.id.tb_main)
-    Toolbar mToolbar;
+    Toolbar toolbar;
     @BindView(R.id.gv_messages_actions)
-    GridView mMessagesActionsGrid;
+    GridView messagesActionsGrid;
     @BindView(R.id.gv_groups_actions)
-    GridView mGroupsActionsGrid;
+    GridView groupsActionsGrid;
 
 
     @Override
@@ -39,23 +38,23 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mContext = MainActivity.this;
+        context = MainActivity.this;
 
         ButterKnife.bind(this);
 
         setUpActionBar();
 
-        mMessagesActionsGrid.setAdapter(new ButtonGridViewAdapter(mContext, fetchMessagesGridItems()));
-        mGroupsActionsGrid.setAdapter(new ButtonGridViewAdapter(mContext, fetchGroupsGridItems()));
+        messagesActionsGrid.setAdapter(new ButtonGridViewAdapter(context, fetchMessagesGridItems()));
+        groupsActionsGrid.setAdapter(new ButtonGridViewAdapter(context, fetchGroupsGridItems()));
 
     }
 
     private void setUpActionBar() {
-        setSupportActionBar(mToolbar);
+        setSupportActionBar(toolbar);
         ActionBar mActionBar = getSupportActionBar();
         if (mActionBar != null) {
             mActionBar.setDisplayShowTitleEnabled(false);
-            TextView titleTV = ButterKnife.findById(mToolbar, R.id.tv_base_title);
+            TextView titleTV = ButterKnife.findById(toolbar, R.id.tv_base_title);
             titleTV.setText(getString(R.string.app_name));
         }
     }
