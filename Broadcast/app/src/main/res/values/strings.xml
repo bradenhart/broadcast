@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">Broadcast</string>
+    <string name="description_logo">app logo</string>
+
+
+    <!-- title for message actions grid -->
+    <string name="title_message_action_grid">Messages</string>
+    <!-- labels for actions in the message actions grid -->
+    <string name="label_message_action_view">View</string>
+    <string name="label_message_action_create">Create</string>
+    <string name="label_message_action_find">Find</string>
+    <string name="label_message_action_history">History</string>
+
+    <!-- title for group actions grid -->
+    <string name="title_group_action_grid">Groups</string>
+    <!-- labels for actions in the group actions grid -->
+    <string name="label_group_action_view">View</string>
+    <string name="label_group_action_create">Create</string>
+    <string name="label_group_action_find">Find</string>
+
 </resources>
