@@ -4,8 +4,6 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import io.bradenhart.broadcast.data.db.AppDbContract.*;
-
 /**
  * Helper class for the Broadcast SQLite Database.
  *
@@ -18,30 +16,30 @@ public class DbOpenHelper extends SQLiteOpenHelper {
 
     private static DbOpenHelper dbHelper;
 
-    private final String SQL_CREATE_MESSAGE = "create table " + Message.TABLE_NAME + "("
-            + Message._ID + " integer primary key autoincrement, "
-            + Message.COLUMN_MESSAGE_TITLE + " text, "
-            + Message.COLUMN_MESSAGE_CONTENT + " text not null"
+    private final String SQL_CREATE_MESSAGE = "create table " + AppDbContract.Message.TABLE_NAME + "("
+            + AppDbContract.Message._ID + " integer primary key autoincrement, "
+            + AppDbContract.Message.COLUMN_MESSAGE_TITLE + " text, "
+            + AppDbContract.Message.COLUMN_MESSAGE_CONTENT + " text not null"
             + ");";
 
-    private final String SQL_CREATE_GROUP = "create table " + Group.TABLE_NAME + "("
-            + Group._ID + " integer primary key autoincrement, "
-            + Group.COLUMN_GROUP_NAME + " text"
+    private final String SQL_CREATE_GROUP = "create table " + AppDbContract.Group.TABLE_NAME + "("
+            + AppDbContract.Group._ID + " integer primary key autoincrement, "
+            + AppDbContract.Group.COLUMN_GROUP_NAME + " text"
             + ");";
 
-    private final String SQL_CREATE_CONTACT = "create table " + Contact.TABLE_NAME + "("
-            + Contact._ID + " integer primary key autoincrement, "
-            + Contact.COLUMN_CONTACT_NAME + " text not null, "
-            + Contact.COLUMN_CONTACT_NUMBER + " text not null, "
-            + Contact.COLUMN_CONTACT_GROUP_ID + " integer not null"
+    private final String SQL_CREATE_CONTACT = "create table " + AppDbContract.Contact.TABLE_NAME + "("
+            + AppDbContract.Contact._ID + " integer primary key autoincrement, "
+            + AppDbContract.Contact.COLUMN_CONTACT_NAME + " text not null, "
+            + AppDbContract.Contact.COLUMN_CONTACT_NUMBER + " text not null, "
+            + AppDbContract.Contact.COLUMN_CONTACT_GROUP_ID + " integer not null"
 
-            + "foreign key(" + Contact.COLUMN_CONTACT_GROUP_ID + ")"
-            + " references " + Group.TABLE_NAME + "(" + AppDbContract.Group._ID + ")"
+            + "foreign key(" + AppDbContract.Contact.COLUMN_CONTACT_GROUP_ID + ")"
+            + " references " + AppDbContract.Group.TABLE_NAME + "(" + AppDbContract.Group._ID + ")"
             + ");";
 
-    private final String SQL_DELETE_MESSAGE = "drop table if exists " + Message.TABLE_NAME;
-    private final String SQL_DELETE_GROUP   = "drop table if exists " + Group.TABLE_NAME;
-    private final String SQL_DELETE_CONTACT = "drop table if exists " + Contact.TABLE_NAME;
+    private final String SQL_DELETE_MESSAGE = "drop table if exists " + AppDbContract.Message.TABLE_NAME;
+    private final String SQL_DELETE_GROUP   = "drop table if exists " + AppDbContract.Group.TABLE_NAME;
+    private final String SQL_DELETE_CONTACT = "drop table if exists " + AppDbContract.Contact.TABLE_NAME;
 
     private DbOpenHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
