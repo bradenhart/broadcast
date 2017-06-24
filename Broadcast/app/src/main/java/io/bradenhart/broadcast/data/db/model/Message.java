@@ -18,91 +18,51 @@ import io.bradenhart.broadcast.data.db.AppDbContract;
 @Entity(tableName = AppDbContract.Message.TABLE_NAME)
 public class Message {
 
-    @Nullable
+    @Ignore
+    public static final String BLANK_TITLE = "";
+    @Ignore
+    public static final String BLANK_CONTENT = "";
+
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = AppDbContract.Message._ID)
-    private Long id;
+    private long id;
 
-    @Nullable
     @ColumnInfo(name = AppDbContract.Message.COLUMN_MESSAGE_TITLE)
-    private String title;
+    private String title = BLANK_TITLE;
 
-    @NonNull
     @ColumnInfo(name = AppDbContract.Message.COLUMN_MESSAGE_CONTENT)
-    private String content;
+    private String content = BLANK_CONTENT;
 
-    /**
-     * Creates a message with a title and content for inserting to a database.
-     *
-     * @param title   the title of the message, not null
-     * @param content the content of the message, not null
-     */
-    public Message(@Nullable String title, @NonNull String content) {
-        this.title = title;
-        this.content = content;
+    public Message() {
+
     }
 
-    /**
-     * Creates a message with an id, title, and content.
-     * Used when retrieving a message from database as the id is known.
-     *
-     * @param id      the id for the retrieved message, not null
-     * @param title   the title of the message, not null
-     * @param content the content of the message, not null
-     */
-    @Ignore
-    public Message(@NonNull Long id, @Nullable String title, @NonNull String content) {
-        this.id = id;
-        this.title = title;
-        this.content = content;
-    }
-
-    @Nullable
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(@Nullable Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    @Nullable
     public String getTitle() {
         return title;
     }
 
     public void setTitle(@Nullable String title) {
-        this.title = title;
+        // if a null value is provided, keep the default value BLANK_TITLE
+        // otherwise, use the provided title
+        if (title != null) this.title = title;
     }
 
-    @NonNull
     public String getContent() {
         return content;
     }
 
     public void setContent(@NonNull String content) {
-        this.content = content;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Message message = (Message) o;
-
-        if (id != null ? !id.equals(message.id) : message.id != null) return false;
-        if (title != null ? !title.equals(message.title) : message.title != null) return false;
-        return content.equals(message.content);
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (title != null ? title.hashCode() : 0);
-        result = 31 * result + content.hashCode();
-        return result;
+        // if a null value is provided, keep the default value BLANK_CONTENT
+        // otherwise, use the provided content
+        if (content != null) this.content = content;
     }
 
     @Override
