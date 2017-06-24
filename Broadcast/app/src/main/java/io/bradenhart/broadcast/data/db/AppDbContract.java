@@ -10,6 +10,8 @@ import android.provider.BaseColumns;
  */
 public class AppDbContract {
 
+    public static final String DB_NAME = "broadcast_db.db";
+
     private AppDbContract() {}
 
     /**
